@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="12.0.1" class="java.beans.XMLDecoder">
+ <object class="model.Kladr">
+  <void property="root">
+   <object class="model.Node" id="Node0">
+    <void property="children">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="model.Node" id="Node1">
+        <void property="children">
+         <object class="java.util.ArrayList">
+          <void method="add">
+           <object class="model.Node" id="Node2">
+            <void property="children">
+             <object class="java.util.ArrayList">
+              <void method="add">
+               <object class="model.Node">
+                <void property="name">
+                 <string>Чебоксары</string>
+                </void>
+                <void property="parent">
+                 <object idref="Node2"/>
+                </void>
+                <void property="priority">
+                 <int>2</int>
+                </void>
+                <void property="type">
+                 <object class="java.lang.Enum" id="Type0" method="valueOf">
+                  <class>util.Type</class>
+                  <string>CITY</string>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void method="add">
+               <object class="model.Node">
+                <void property="name">
+                 <string>Ишлеево</string>
+                </void>
+                <void property="parent">
+                 <object idref="Node2"/>
+                </void>
+                <void property="priority">
+                 <int>1</int>
+                </void>
+                <void property="type">
+                 <object idref="Type0"/>
+                </void>
+               </object>
+              </void>
+             </object>
+            </void>
+            <void property="name">
+             <string>Чебоксарский район</string>
+            </void>
+            <void property="parent">
+             <object idref="Node1"/>
+            </void>
+            <void property="priority">
+             <int>1</int>
+            </void>
+            <void property="type">
+             <object class="java.lang.Enum" method="valueOf">
+              <class>util.Type</class>
+              <string>DISTRICT</string>
+             </object>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="name">
+         <string>Чувашия</string>
+        </void>
+        <void property="parent">
+         <object idref="Node0"/>
+        </void>
+        <void property="priority">
+         <int>1</int>
+        </void>
+        <void property="type">
+         <object class="java.lang.Enum" id="Type1" method="valueOf">
+          <class>util.Type</class>
+          <string>REGION</string>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.Node">
+        <void property="name">
+         <string>Башкирия</string>
+        </void>
+        <void property="parent">
+         <object idref="Node0"/>
+        </void>
+        <void property="priority">
+         <int>2</int>
+        </void>
+        <void property="type">
+         <object idref="Type1"/>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Россия</string>
+    </void>
+    <void property="priority">
+     <int>1</int>
+    </void>
+    <void property="type">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>util.Type</class>
+      <string>COUNTRY</string>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
