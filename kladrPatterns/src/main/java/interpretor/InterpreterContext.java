@@ -1,11 +1,15 @@
 package interpretor;
 
+import facade.TreeSaverReader;
+import facade.TreeSaverReaderJsonImpl;
+import facade.TreeSaverReaderXMLimpl;
 import interpretor.response.Response;
 import iterators.Iterator;
 import model.Kladr;
 import model.Node;
 import util.Type;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +17,7 @@ import java.util.Optional;
 
 public class InterpreterContext {
 
-    Node root;
+    private Node root;
 
     public InterpreterContext(Node root) {
         this.root = root;
@@ -46,11 +50,11 @@ public class InterpreterContext {
         Iterator<Node> iterator = root.dfsIterator();
         Node toDelete = findNode(address);
         if (toDelete != null) {
-            if (toDelete.getParent()!= null) {
+            if (toDelete.getParent() != null) {
                 toDelete.getParent().getChildren().remove(toDelete);
-            }else root = null;
+            } else root = null;
             return new Response<>("success", "Successfully deleted");
-        }else return new Response<>("failure","node can't be found");
+        } else return new Response<>("failure", "node can't be found");
     }
 
     public Response<String> add(String[] params) {
@@ -62,6 +66,7 @@ public class InterpreterContext {
         Iterator<Node> iterator = root.dfsIterator();
         Node parent = findNode(address);
         if (parent != null) {
+            //builderUsage
             Node child = Node.getBuilder()
                     .setParent(parent)
                     .setName(name)
@@ -81,6 +86,21 @@ public class InterpreterContext {
             return new Response<>("success", "Success");
         }
         return new Response<>("failure", "failure");
+    }
+
+    public Response<String> save(String[] params) throws IOException {
+        String format = params[0];
+        String fileName = params[1];
+        if (format.equals("xml")) {
+            TreeSaverReader saver = TreeSaverReaderXMLimpl.getInstance();
+            saver.saveTree(new Kladr(root), fileName);
+            return new Response<>("success", "kladr saved to XML-file");
+        } else if (format.equals("json")){
+            TreeSaverReader saver = TreeSaverReaderJsonImpl.getInstance();
+            saver.saveTree(new Kladr(root),fileName);
+            return new Response<>("success", "kladr saved to JSON-file");
+
+        } else return new Response<>("failure", "Error format");
     }
 
 

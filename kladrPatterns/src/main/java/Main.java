@@ -1,18 +1,12 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
-import facade.TreeSaver;
-import facade.TreeSaverJsonImpl;
-import facade.TreeSaverXMLimpl;
+import facade.TreeSaverReader;
+import facade.TreeSaverReaderJsonImpl;
 import interpretor.InterpreterClient;
-import interpretor.InterpreterContext;
-import interpretor.response.Response;
 import iterators.Iterator;
 import model.Kladr;
 import model.Node;
 import util.Type;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,9 +47,9 @@ public class Main {
 
         InterpreterClient client = new InterpreterClient(kladr.getRoot());
 
-        TreeSaver saver = TreeSaverJsonImpl.getInstance();
-        saver.saveTree(kladr);
-        Kladr kladr1 = saver.getTree();
+        TreeSaverReader saver = TreeSaverReaderJsonImpl.getInstance();
+        saver.saveTree(kladr, "kladr");
+        Kladr kladr1 = saver.getTree("kladr");
 
         System.out.println(1);
     }

@@ -10,12 +10,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class TreeSaverXMLimpl implements TreeSaver{
-    private static TreeSaverXMLimpl instance;
+public class TreeSaverReaderXMLimpl implements TreeSaverReader {
+    private static TreeSaverReaderXMLimpl instance;
 
     @Override
-    public void saveTree(Kladr kladr) throws FileNotFoundException {
-        FileOutputStream fos = new FileOutputStream(new File("kladr.xml"));
+    public void saveTree(Kladr kladr, String pathname) throws FileNotFoundException {
+        FileOutputStream fos = new FileOutputStream(new File(pathname+".xml"));
         XMLEncoder xmlEncoder = new XMLEncoder(fos);
         xmlEncoder.writeObject(kladr);
         xmlEncoder.flush();
@@ -27,18 +27,18 @@ public class TreeSaverXMLimpl implements TreeSaver{
 
 
     @Override
-    public Kladr getTree() throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream(new File("kladr.xml"));
+    public Kladr getTree(String pathname) throws FileNotFoundException {
+        FileInputStream fis = new FileInputStream(new File(pathname+".xml"));
         XMLDecoder decoder = new XMLDecoder(fis);
         return (Kladr) decoder.readObject();
     }
 
     //singleton
-    private TreeSaverXMLimpl(){
+    private TreeSaverReaderXMLimpl(){
     }
-    public static TreeSaverXMLimpl getInstance(){
+    public static TreeSaverReaderXMLimpl getInstance(){
         if(instance == null){
-            instance = new TreeSaverXMLimpl();
+            instance = new TreeSaverReaderXMLimpl();
         }
         return instance;
     }

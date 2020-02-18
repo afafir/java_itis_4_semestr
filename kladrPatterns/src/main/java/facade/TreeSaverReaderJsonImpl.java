@@ -9,21 +9,21 @@ import model.Node;
 import java.io.File;
 import java.io.IOException;
 
-public class TreeSaverJsonImpl implements TreeSaver {
+public class TreeSaverReaderJsonImpl implements TreeSaverReader {
 
-    private static TreeSaverJsonImpl instance;
+    private static TreeSaverReaderJsonImpl instance;
 
     @Override
-    public void saveTree(Kladr kladr) throws IOException {
+    public void saveTree(Kladr kladr, String pathname) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File("kladr.json"), kladr);
+        mapper.writeValue(new File(pathname+".json"), kladr);
 
     }
 
     @Override
-    public Kladr getTree() throws IOException {
+    public Kladr getTree(String pathname) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Kladr kladr = mapper.readValue(new File("kladr.json"), Kladr.class);
+        Kladr kladr = mapper.readValue(new File(pathname+".json"), Kladr.class);
         Iterator<Node> iterator = kladr.getRoot().bfsIterator();
         while (iterator.hasNext()) {
             Node curr = iterator.next();
@@ -35,11 +35,11 @@ public class TreeSaverJsonImpl implements TreeSaver {
     }
 
         //singleton
-    private TreeSaverJsonImpl(){
+    private TreeSaverReaderJsonImpl(){
     }
-    public static TreeSaverJsonImpl getInstance(){
+    public static TreeSaverReaderJsonImpl getInstance(){
        if(instance == null){
-            instance = new TreeSaverJsonImpl();
+            instance = new TreeSaverReaderJsonImpl();
        }
        return instance;
     }

@@ -6,8 +6,8 @@ import model.Kladr;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public interface TreeSaver {
-    void saveTree(Kladr kladr) throws IOException;
+public interface TreeSaverReader {
+    void saveTree(Kladr kladr, String pathname) throws IOException;
 
-    Kladr getTree() throws IOException;
+    Kladr getTree(String pathname) throws IOException;
 }
